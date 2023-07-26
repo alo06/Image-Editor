@@ -1,0 +1,87 @@
+@font-face {
+    font-family: myFont;
+    src: url(Intro\ Cond\ Black\ Free.otf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: myFont;
+    
+}
+
+body{
+    display: flex;
+    background: #121212;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 60%;
+    background: whitesmoke;
+    border-radius: 1rem;
+    flex-direction: column;
+}
+.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+}
+.actions button{
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+.preview-image img{
+    height: 350px;
+    width: 400px;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+}
+.content button{
+    padding: 1rem;
+    border-radius: 0.75rem;
+}
+.filter{
+    margin:1rem 0.5rem;
+    padding: 0.3rem;
+}
+.slider{
+    margin-top:0.5rem;
+}
+.filter-value{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.slider input{
+    width: 100%;
+}
+.rotate{
+    margin:1rem 0.5rem;
+    padding: 0.3rem;
+}
+.resize{
+   margin-top: 1rem;
+}
+
+.temp{
+    filter: brightness() saturate() grayscale() invert();
+    transform: rotate() scale();
+}
