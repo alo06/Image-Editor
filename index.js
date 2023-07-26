@@ -12,6 +12,8 @@ let brightness = "100",
   saturation = "100",
   inversion = "0",
   grayscale = "0",
+  blurr="0",
+  hue="180",
   rotate = 0,
   horizontal = 1,
   vertical = 1;
@@ -32,7 +34,7 @@ filterBtn.forEach((option) => {
     document.querySelector(".active").classList.remove("active");
     option.classList.add("active");
     console.log(option);
-    filterName.innerText = option.innerText;
+    filterName.innerText = option.id;
     if (option.id === "brightness") {
       filterSlider.max = "200";
       filterSlider.value = brightness;
@@ -45,10 +47,20 @@ filterBtn.forEach((option) => {
       filterSlider.max = "100";
       filterSlider.value = inversion;
       filterValue.innerText = `${inversion}%`;
-    } else {
+    } else if (option.id=="grayscale"){
       filterSlider.max = "100";
       filterSlider.value = grayscale;
       filterValue.innerText = `${grayscale}%`;
+    }
+    else if(option.id=="blur"){
+      filterSlider.max = "10";
+      filterSlider.value = blurr;
+      filterValue.innerText = `${blurr}%`;
+    }
+    else if(option.id=="hue-rotate"){
+      filterSlider.max = "360";
+      filterSlider.value = hue;
+      filterValue.innerText = `${hue}%`;
     }
   });
 });
@@ -56,7 +68,7 @@ filterBtn.forEach((option) => {
 const applyFilter = () => {
   console.log(rotate);
   previewImg.style.transform = `rotate(${rotate}deg) scale(${horizontal},${vertical})`;
-  previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) grayscale(${grayscale}%) invert(${inversion}%)`;
+  previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) grayscale(${grayscale}%) invert(${inversion}%) blur(${blurr}px) hue-rotate(${hue}deg)`;
 };
 
 rotateBtn.forEach((option) => {
@@ -85,8 +97,12 @@ const putFilter = () => {
     inversion = filterSlider.value;
   } else if (filterType.id === "saturation") {
     saturation = filterSlider.value;
-  } else {
+  } else if (filterType.id === "grayscale") {
     grayscale = filterSlider.value;
+  } else if (filterType.id === "blur") {
+    blurr = filterSlider.value;
+  } else if(filterType.id ==="hue-rotate"){
+    hue = filterSlider.value;
   }
   applyFilter();
 };
@@ -95,7 +111,9 @@ const resetFilter = () => {
   (brightness = "100"),
     (saturation = "100"),
     (inversion = "0"),
-    (grayscale = "0");
+    (grayscale = "0"),
+    (blurr="0"),
+    (hue="0"),
   (rotate = 0), (horizontal = 1), (vertical = 1);
   filterBtn[0].click();
   applyFilter();
