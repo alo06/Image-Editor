@@ -39,13 +39,17 @@
                 <label for="resize">Resize</label>
                 <div class="resize">
                     <label for="width">Width</label>
-                    <input type="text" name="width" id="width">
+                    <input type="number" name="width" id="width">
                     <label for="width">Height</label>
-                    <input type="text" name="height" id="height">
+                    <input type="number" name="height" id="height">
+                </div>
+                <div class="aspect">
+                    <label for="ratio">Lock aspect ratio</label>
+                    <input type="checkbox" id="ratio" name="ratio" checked>
                 </div>
             </div>
             <div class="preview-image">
-                <img src="preview.jpg"/>
+                <img src="image-placeholder.png"/>
             </div>
         </div>
         <div class="actions">
@@ -59,6 +63,7 @@
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="index.js"></script>
 </body>
 </html>

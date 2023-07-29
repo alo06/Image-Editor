@@ -81,7 +81,14 @@ body{
    margin-top: 1rem;
 }
 
-.temp{
-    filter: brightness() saturate() grayscale() invert();
-    transform: rotate() scale();
+
+input[type=number]{
+    padding: 0.5rem;
+    border-color: aqua;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.aspect{
+    padding: 1rem;
 }
