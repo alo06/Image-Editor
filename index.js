@@ -80,7 +80,7 @@ const applyFilter = () => {
 width.addEventListener("keyup",()=>{
   height.value = Math.floor(aspectRatio.checked ? width.value / actualRatio : height.value);
 })
-width.addEventListener("keyup", () => {
+height.addEventListener("keyup", () => {
   width.value = Math.floor(aspectRatio.checked ? height.value * actualRatio : width.value);
 });
 
@@ -139,14 +139,31 @@ const resetFilter = () => {
 const saveImg = () => {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-  canvas.width = width.value;
-  canvas.height = height.value;
+  const rotatedWidth =
+    Math.abs(Math.cos((rotate * Math.PI) / 180)) * width.value +
+    Math.abs(Math.sin((rotate * Math.PI) / 180)) * height.value;
+  const rotatedHeight =
+    Math.abs(Math.sin((rotate * Math.PI) / 180)) * width.value +
+    Math.abs(Math.cos((rotate * Math.PI) / 180)) * height.value;
+  canvas.width = rotatedWidth;
+  canvas.height = rotatedHeight;
   ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) grayscale(${grayscale}%) invert(${inversion}%) blur(${blurr}px) hue-rotate(${hue}deg)`;
-  if (rotate !== 0) {
-    ctx.rotate((rotate * Math.PI) / 180);
-  }
+
+  ctx.translate(rotatedWidth / 2, rotatedHeight / 2);
+
+  ctx.rotate((rotate * Math.PI) / 180);
+  
   ctx.scale(horizontal, vertical);
-  ctx.drawImage(previewImg, 0, 0, canvas.width, canvas.height);
+
+
+  ctx.drawImage(
+    previewImg,
+    -width.value / 2,
+    -height.value / 2,
+    width.value,
+    height.value
+  );
+
   const link = document.createElement("a");
   link.download = "image.jpg";
   link.href = canvas.toDataURL();
